@@ -16,5 +16,5 @@ see output in `/build`
 # Config
 
 ```
-./build/feedgomail -from <from-mail> -to <to-mail> -host <smtp-host> -port <smtp-port> -password <smtp-password -feeds <feed-a> -feeds <feed-b> -feeds <feed-c>
+./build/feedgomail -from <from-mail> -to <to-mail> -host <smtp-host> -port <smtp-port> -password <smtp-password> -feeds <feed-a> -feeds <feed-b> -feeds <feed-c>
 ```
