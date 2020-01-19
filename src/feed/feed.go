@@ -5,6 +5,7 @@ import (
 	"gofeedtomail/src/config"
 	"log"
 	"net/smtp"
+	"strconv"
 	"time"
 )
 
@@ -52,7 +53,7 @@ func (feed *Feed) processFeedItem(feedTitle string, item *gofeed.Item) {
 		item.Content
 
 	log.Println("sending mail for " + item.Link)
-	address := feed.conf.Host + ":" + string(feed.conf.Port)
+	address := feed.conf.Host + ":" + strconv.FormatInt(feed.conf.Port, 10)
 	auth := smtp.PlainAuth("", feed.conf.From, feed.conf.Password, feed.conf.Host)
 	if err := smtp.SendMail(address, auth, feed.conf.From, []string{feed.conf.To}, []byte(msg)); err != nil {
 		log.Fatal(err)
