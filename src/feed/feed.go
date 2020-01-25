@@ -56,14 +56,14 @@ func (feed *Feed) processFeedItem(feedTitle string, item *gofeed.Item) {
 	address := feed.conf.Host + ":" + strconv.FormatInt(feed.conf.Port, 10)
 	auth := smtp.PlainAuth("", feed.conf.From, feed.conf.Password, feed.conf.Host)
 	if err := smtp.SendMail(address, auth, feed.conf.From, []string{feed.conf.To}, []byte(msg)); err != nil {
-		log.Fatal(err)
+		log.Print(err)
 	}
 }
 
 func (feed *Feed) ProcessFeed() {
 	parsedFeed, err := feed.parser.ParseURL(feed.url)
 	if err != nil {
-		log.Fatal(err)
+		log.Print(err)
 		return
 	}
 
