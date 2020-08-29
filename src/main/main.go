@@ -1,45 +1,31 @@
 package main
 
 import (
-	"flag"
-	"gofeedtomail/src/config"
-	"gofeedtomail/src/feed"
+	"encoding/json"
+	"feedgomail/src/config"
+	"feedgomail/src/feed"
 	"log"
+	"os"
 	"time"
 )
 
-type feedList []string
-
-func (feedList *feedList) String() string {
-	return ""
-}
-
-func (feedList *feedList) Set(value string) error {
-	*feedList = append(*feedList, value)
-	return nil
+func check(err error, reason string) {
+	if err != nil {
+		log.Fatal("ERROR", reason, err)
+	}
 }
 
 func main() {
+	configFilePath := "./feedgomail.json"
+	file, err := os.Open(configFilePath)
+	check(err, "ERROR reading config: " + configFilePath)
 
-	from := flag.String("from", "", "email sender")
-	to := flag.String("to", "", "email receiver")
-	host := flag.String("host", "", "smtp host")
-	port := flag.Int64("port", 0, "smtp port")
-	password := flag.String("password", "", "smtp password")
+	decoder := json.NewDecoder(file)
+	conf := &config.Config{}
+	err = decoder.Decode(&conf)
+	check(err, "Error decoding config json:")
 
-	var feedList feedList
-	flag.Var(&feedList, "feeds", "list of feeds to crawl")
-
-	flag.Parse()
-
-	conf := &config.Config{
-		From:     *from,
-		To:       *to,
-		Host:     *host,
-		Port:     *port,
-		Password: *password,
-		Feeds:    feedList,
-	}
+	err = file.Close()
 
 	feeds := make([]*feed.Feed, len(conf.Feeds))
 	for index, feedUrl := range conf.Feeds {
