@@ -15,6 +15,14 @@ see output in `/build`
 
 # Config
 
-```
-./build/feedgomail -from <from-mail> -to <to-mail> -host <smtp-host> -port <smtp-port> -password <smtp-password> -feeds <feed-a> -feeds <feed-b> -feeds <feed-c>
+put a `feedgomail.json` file in the directory from which you are executing feedgomail, looking like this:
+```json
+{
+	"From":     "<from-mail>",
+	"To":       "<to-mail>",
+	"Host":     "<smtp-host>",
+	"Port":     1234,
+	"Password": "<smtp-password",
+	"Feeds":    ["<feed-a>", "<feed-b>", "<feed-c>"]
+}
 ```
