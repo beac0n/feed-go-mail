@@ -1,8 +1,8 @@
 package feed
 
 import (
+	"feedgomail/src/config"
 	"github.com/mmcdole/gofeed"
-	"gofeedtomail/src/config"
 	"log"
 	"net/smtp"
 	"strconv"
@@ -42,15 +42,18 @@ var CRLF = "\r\n"
 var newLine = "<br/><br/>"
 
 func (feed *Feed) processFeedItem(feedTitle string, item *gofeed.Item) {
-	msg := "From: " + feed.conf.From + CRLF +
-		"To: " + feed.conf.To + CRLF +
-		"Subject: " + feedTitle + ": " + item.Title + CRLF +
-		"MIME-Version: 1.0" + CRLF +
-		"Content-Type: text/html;charset=UTF-8" + CRLF +
-		CRLF + // email body starts below here
-		`<a href="` + item.Link + `">` + item.Link + "</a>" + newLine +
+	fromLine := "From: " + feed.conf.From
+	toLine := "To: " + feed.conf.To
+	subjectLine := "Subject: " + feedTitle + ": " + item.Title
+	mimeLine := "MIME-Version: 1.0"
+	contentTypeLine := "Content-Type: text/html;charset=UTF-8"
+	emailBody := `<a href="` + item.Link + `">` + item.Link + "</a>" + newLine +
 		item.Description + newLine +
 		item.Content
+
+	contactLines := fromLine + CRLF + toLine + CRLF + subjectLine[:75] + "..."
+	configLines := mimeLine + CRLF + contentTypeLine
+	msg := contactLines + CRLF + configLines + CRLF + CRLF + emailBody
 
 	log.Println("sending mail for " + item.Link)
 	address := feed.conf.Host + ":" + strconv.FormatInt(feed.conf.Port, 10)
