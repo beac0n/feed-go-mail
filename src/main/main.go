@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"feedgomail/src/config"
 	"feedgomail/src/feed"
+	"flag"
 	"log"
 	"os"
 	"time"
@@ -16,9 +17,12 @@ func check(err error, reason string) {
 }
 
 func main() {
-	configFilePath := "./feedgomail.json"
-	file, err := os.Open(configFilePath)
-	check(err, "ERROR reading config: " + configFilePath)
+	configFilePath := flag.String("config-path", "./feedgomail.json", "path to config file")
+
+	flag.Parse()
+
+	file, err := os.Open(*configFilePath)
+	check(err, "ERROR reading config: " + *configFilePath)
 
 	decoder := json.NewDecoder(file)
 	conf := &config.Config{}
