@@ -18,7 +18,7 @@
   version = "v1.1.0"
 
 [[projects]]
-  digest = "1:0ae05e34cbf90e309af02a3f04d2fc3373eb3bed967fd270f5a7cc221d40db0c"
+  digest = "1:67092ea1acfdef0e896b8bf72047ea008d439a37c66c98b6736106d06e760b5d"
   name = "github.com/mmcdole/gofeed"
   packages = [
     ".",
@@ -28,8 +28,8 @@
     "rss",
   ]
   pruneopts = ""
-  revision = "42010a154d249f5f753dfe03a6390b59671e403e"
-  version = "v1.0.0-beta2"
+  revision = "4298e4366be3f64365cf257806159ed24bf89a4f"
+  version = "v1.0.0"
 
 [[projects]]
   branch = "master"
