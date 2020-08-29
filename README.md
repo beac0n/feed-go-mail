@@ -1,5 +1,5 @@
 # feedgomail
-service, which parses rss feeds and sends them to a dedicated email address
+parses rss feeds and sends them to a dedicated email address
 
 # Build
 
