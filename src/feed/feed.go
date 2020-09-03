@@ -1,7 +1,7 @@
 package feed
 
 import (
-	"feedgomail/src/config"
+	"feed-go-mail/src/config"
 	"github.com/mmcdole/gofeed"
 	"log"
 	"net/smtp"

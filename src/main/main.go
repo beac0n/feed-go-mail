@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
-	"feedgomail/src/config"
-	"feedgomail/src/feed"
+	"feed-go-mail/src/config"
+	"feed-go-mail/src/feed"
 	"flag"
 	"log"
 	"os"
