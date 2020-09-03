@@ -1,7 +1,7 @@
 deps_install:
 	dep ensure
 build: FORCE
-	go build -o build/feedgomail src/main/main.go
+	go build -o build/feed-go-mail src/main/main.go
 clean:
 	rm -rf build
 run:
