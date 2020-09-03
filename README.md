@@ -3,6 +3,9 @@ parses rss feeds and sends them to a dedicated email address
 
 # Build
 
+- make sure you cloned this project to `$GOPATH/src`
+- install dep: https://github.com/golang/dep
+
 - install deps:
 ```
 make deps_install
