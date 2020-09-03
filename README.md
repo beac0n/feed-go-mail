@@ -1,4 +1,4 @@
-# feedgomail
+# feed-go-mail
 parses rss feeds and sends them to a dedicated email address
 
 # Build
