@@ -57,9 +57,9 @@ func (feed *Feed) processFeedItem(feedTitle string, item *gofeed.Item) {
 	configLines := mimeLine + CRLF + contentTypeLine
 	msg := contactLines + CRLF + configLines + CRLF + CRLF + emailBody
 
-	log.Println("sending mail for " + item.Link)
 	address := feed.conf.Host + ":" + strconv.FormatInt(feed.conf.Port, 10)
 	auth := smtp.PlainAuth("", feed.conf.From, feed.conf.Password, feed.conf.Host)
+	log.Println("sending mail for " + item.Link)
 	if err := smtp.SendMail(address, auth, feed.conf.From, []string{feed.conf.To}, []byte(msg)); err != nil {
 		log.Print(err)
 	}
