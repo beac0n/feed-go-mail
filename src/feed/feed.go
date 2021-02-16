@@ -61,8 +61,9 @@ func (feed *Feed) processFeedItem(feedTitle string, item *gofeed.Item) {
 	auth := smtp.PlainAuth("", feed.conf.From, feed.conf.Password, feed.conf.Host)
 	log.Println("sending mail for " + item.Link)
 	if err := smtp.SendMail(address, auth, feed.conf.From, []string{feed.conf.To}, []byte(msg)); err != nil {
-		log.Print(err)
+		log.Print("failed to send mail", err)
 	}
+	log.Println("done - sent mail for " + item.Link)
 }
 
 func (feed *Feed) ProcessFeed() {
