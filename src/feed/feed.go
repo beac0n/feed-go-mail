@@ -19,7 +19,9 @@ type Feed struct {
 func (feed *Feed) getIndexOfLatestSentItem(items []*gofeed.Item) int {
 	defer feed.updateLatestSentItemLink(items)
 
-	if feed.latestSentItemLink == "" {
+	if feed.latestSentItemLink == "" && feed.conf.All {
+		return len(items)
+	} else if feed.latestSentItemLink == "" && !feed.conf.All {
 		return 0
 	}
 

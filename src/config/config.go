@@ -7,4 +7,5 @@ type Config struct {
 	Port     int64
 	Password string
 	Feeds    []string
+	All      bool
 }
