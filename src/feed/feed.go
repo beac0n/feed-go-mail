@@ -53,7 +53,11 @@ func (feed *Feed) processFeedItem(feedTitle string, item *gofeed.Item) {
 		item.Description + newLine +
 		item.Content
 
-	contactLines := fromLine + CRLF + toLine + CRLF + subjectLine[:75] + "..."
+	if len(subjectLine) > 75 {
+		subjectLine = subjectLine[:75]
+	}
+
+	contactLines := fromLine + CRLF + toLine + CRLF + subjectLine + "..."
 	configLines := mimeLine + CRLF + contentTypeLine
 	msg := contactLines + CRLF + configLines + CRLF + CRLF + emailBody
 
