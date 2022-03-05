@@ -1,0 +1,13 @@
+[Unit]
+Description=feed-go-mail service
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/feed-go-mail
+WorkingDirectory=/var/lib/feed-go-mail
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
